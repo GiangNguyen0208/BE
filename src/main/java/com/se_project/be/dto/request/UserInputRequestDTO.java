@@ -7,8 +7,10 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class UserInputRequestDTO {
     String userInput;
+
+    public String getUserInput() {
+        return userInput;
+    }
 }
