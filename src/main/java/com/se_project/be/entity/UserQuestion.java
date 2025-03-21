@@ -1,30 +1,27 @@
 package com.se_project.be.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
+
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "user_questions")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class UserQuestion {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
-    @Column(nullable = false)
-    private String userId; // Lưu ID người dùng (có thể thay bằng khóa ngoại nếu có User Entity)
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)  // Tạo khóa ngoại user_id trong bảng user_question
+    private User user;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
-    private String question; // Câu hỏi gốc do user nhập
-
-    @Column(columnDefinition = "TEXT")
-    private String formattedQuestion; // Câu hỏi đã được định dạng lại
-
-    @Column(columnDefinition = "TEXT")
-    private String aiResponse; // Phản hồi từ AI
-
-    @Column(nullable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private String question;
+    private String formattedQuestion;
+    private String aiResponse;
+    private LocalDateTime createdAt;
 }
-

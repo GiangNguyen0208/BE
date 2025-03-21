@@ -6,14 +6,17 @@ import com.se_project.be.dto.request.UserQuestionRequestDTO;
 import com.se_project.be.dto.request.UserRequestDTO;
 import com.se_project.be.dto.response.CommonApiResponse;
 import com.se_project.be.entity.User;
-import com.se_project.be.entity.UserQuestion;
 import com.se_project.be.service.UserService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
+@Transactional
 public class UserResource {
     @Autowired
     UserService userService;
@@ -23,12 +26,11 @@ public class UserResource {
 
     public ResponseEntity<CommonApiResponse> register(UserRequestDTO request) {
         CommonApiResponse response = new CommonApiResponse();
-        User user = User.builder()
-                .email(request.getEmail())
-                .username(request.getUsername())
-                .password(request.getPassword())
-                .build();
-        userService.addUser(user);
+
+        User user  = new User();
+        user.setEmail(request.getEmail());
+        user.setUsername(request.getUsername());
+        user.setPassword(request.getPassword());
 
         response.setMessage("User registered Successfully");
         response.setSuccess(true);
@@ -39,6 +41,7 @@ public class UserResource {
         CommonApiResponse response = new CommonApiResponse();
 
         User user = userDAO.findByEmailId(request.getEmail());
+
         if (user == null) {
             response.setMessage("User was not register before. Pls register first !");
             response.setSuccess(false);

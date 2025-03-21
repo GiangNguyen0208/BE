@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class UserQuestionRequestDTO {
+    int id;
     String yourJob;
     String levelNow;
     String target;
