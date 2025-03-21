@@ -18,9 +18,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDAO userDao;
 
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
     @Override
     public User addUser(User user) {
         return userDao.save(user);

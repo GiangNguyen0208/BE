@@ -1,15 +1,21 @@
 package com.se_project.be.service.serviceImpl;
 
 import com.se_project.be.dao.UserDAO;
+import com.se_project.be.dao.UserQuestionDAO;
 import com.se_project.be.entity.UserQuestion;
+import com.se_project.be.service.AiService;
+import com.se_project.be.service.UserQuestionService;
 import org.springframework.transaction.annotation.Transactional;
 
-public class UserQuestionServiceImpl {
-    private final UserDAO userDAO;
+import java.time.LocalDateTime;
+import java.util.List;
+
+public class UserQuestionServiceImpl implements UserQuestionService {
+    private final UserQuestionDAO userQuestionDAO;
     private final AiService aiService;
 
-    public UserQuestionService(userDAO userQuestionRepository, AiService aiService) {
-        this.userDAO = userQuestionRepository;
+    public UserQuestionServiceImpl(UserQuestionDAO userQuestionRepository, AiService aiService) {
+        this.userQuestionDAO = userQuestionRepository;
         this.aiService = aiService;
     }
 
@@ -29,10 +35,10 @@ public class UserQuestionServiceImpl {
         userQuestion.setAiResponse(aiResponse);
         userQuestion.setCreatedAt(LocalDateTime.now());
 
-        return userQuestionRepository.save(userQuestion);
+        return userQuestionDAO.save(userQuestion);
     }
 
     public List<UserQuestion> getUserQuestions(String userId) {
-        return userQuestionRepository.findByUserId(userId);
+        return userQuestionDAO.findByUserId(userId);
     }
 }
