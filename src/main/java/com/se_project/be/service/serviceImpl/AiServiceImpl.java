@@ -1,15 +1,21 @@
 package com.se_project.be.service.serviceImpl;
 
+import com.se_project.be.service.AiService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import java.util.List;
+import java.util.Map;
 
 @Service
-public class AiServiceImpl {
+public class AiServiceImpl implements AiService {
     private final WebClient webClient;
 
-    public AiService(WebClient.Builder webClientBuilder) {
+    public AiServiceImpl(WebClient.Builder webClientBuilder) {
         this.webClient = webClientBuilder.baseUrl("https://api.openai.com/v1").build();
     }
 
+    @Override
     public String sendToAiModel(String question) {
         String apiKey = "your-api-key"; // Thay thế bằng API Key thật
 
