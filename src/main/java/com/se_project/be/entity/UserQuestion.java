@@ -24,4 +24,52 @@ public class UserQuestion {
     private String formattedQuestion;
     private String aiResponse;
     private LocalDateTime createdAt;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public String getFormattedQuestion() {
+        return formattedQuestion;
+    }
+
+    public void setFormattedQuestion(String formattedQuestion) {
+        this.formattedQuestion = formattedQuestion;
+    }
+
+    public String getAiResponse() {
+        return aiResponse;
+    }
+
+    public void setAiResponse(String aiResponse) {
+        this.aiResponse = aiResponse;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 }

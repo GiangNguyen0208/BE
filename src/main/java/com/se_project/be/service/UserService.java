@@ -2,7 +2,7 @@ package com.se_project.be.service;
 
 
 
-import org.springframework.security.core.userdetails.User;
+import com.se_project.be.entity.User;
 
 import java.util.List;
 public interface UserService {

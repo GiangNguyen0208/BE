@@ -18,7 +18,6 @@ import java.util.Optional;
 public class UserQuestionServiceImpl implements UserQuestionService {
     private final UserQuestionDAO userQuestionDAO;
     private final AiService aiService;
-
     private UserDAO userDAO;
 
     public UserQuestionServiceImpl(UserQuestionDAO userQuestionRepository, AiService aiService) {
@@ -45,8 +44,8 @@ public class UserQuestionServiceImpl implements UserQuestionService {
         return userQuestionDAO.save(userQuestion);
     }
 
-    public List<UserQuestion> getUserQuestions(String userId) {
-        return userQuestionDAO.findByUserId(userId);
+    public List<UserQuestion> getUserQuestions(int userId) {
+        return userQuestionDAO.findById(userId);
     }
 
     @Override
@@ -56,13 +55,12 @@ public class UserQuestionServiceImpl implements UserQuestionService {
 
         String formattedQuestion = formatQuestion(request);
 
-        UserQuestion userQuestion = UserQuestion.builder()
-                .user(user)
-                .question(request.toString())
-                .formattedQuestion(formattedQuestion)
-                .aiResponse("")  // AI response sẽ được cập nhật sau
-                .createdAt(LocalDateTime.now())
-                .build();
+        UserQuestion userQuestion = new UserQuestion();
+        userQuestion.setUser(user.get());
+        userQuestion.setQuestion(request.toString());
+        userQuestion.setFormattedQuestion(formattedQuestion);
+        userQuestion.setAiResponse("");
+        userQuestion.setCreatedAt(LocalDateTime.now());
 
         return userQuestionDAO.save(userQuestion);
     }

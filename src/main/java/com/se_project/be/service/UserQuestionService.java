@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface UserQuestionService {
     UserQuestion saveQuestion(int userId, String question);
-    List<UserQuestion> getUserQuestions(String userId);
+    List<UserQuestion> getUserQuestions(int userId);
     UserQuestion saveFormattedQuestion(UserQuestionRequestDTO request);
 }

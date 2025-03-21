@@ -42,7 +42,7 @@ public class QuestionController {
     }
 
     @GetMapping("/history")
-    public ResponseEntity<List<UserQuestion>> getUserQuestions(@RequestParam String userId) {
+    public ResponseEntity<List<UserQuestion>> getUserQuestions(@RequestParam int userId) {
         List<UserQuestion> questions = userQuestionService.getUserQuestions(userId);
         return ResponseEntity.ok(questions);
     }
